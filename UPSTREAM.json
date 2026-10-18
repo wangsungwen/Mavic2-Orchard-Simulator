@@ -1,0 +1,7 @@
+{
+  "AirSim": "https://github.com/microsoft/AirSim",
+  "commit": "96235148a332fe7cb3d3525a0720e26faaca99e0",
+  "UnrealEngine": "4.27.2",
+  "Python": "3.10",
+  "note": "UE4 and AirSim build dependencies are not bundled in source. Portable runtime is distributed separately."
+}

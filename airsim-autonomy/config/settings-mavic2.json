@@ -1,0 +1,55 @@
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "ClockSpeed": 1,
+  "LocalHostIp": "127.0.0.1",
+  "ApiServerPort": 41451,
+  "RpcEnabled": true,
+  "ViewMode": "FlyWithMe",
+  "OriginGeopoint": {
+    "Latitude": 25.0,
+    "Longitude": 121.0,
+    "Altitude": 30.0
+  },
+  "Vehicles": {
+    "MavicSim": {
+      "VehicleType": "SimpleFlight",
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "Yaw": 0,
+      "AutoCreate": true,
+      "EnableCollisions": true,
+      "AllowAPIAlways": true,
+      "RC": {
+        "RemoteControlID": -1,
+        "AllowAPIWhenDisconnected": true
+      },
+      "PawnPath": "Mavic2Pawn"
+    }
+  },
+  "CameraDefaults": {
+    "CaptureSettings": [
+      {
+        "ImageType": 0,
+        "Width": 640,
+        "Height": 480,
+        "FOV_Degrees": 90
+      }
+    ]
+  },
+  "PawnPaths": {
+    "Mavic2Pawn": {
+      "PawnBP": "Class'/Game/Mavic2/Blueprints/BP_Mavic2.BP_Mavic2_C'"
+    }
+  },
+  "CameraDirector": {
+    "Y": -1.0,
+    "Roll": 0,
+    "Z": -0.25,
+    "Pitch": -25,
+    "Yaw": 45,
+    "FollowDistance": -1.5,
+    "X": -1.0
+  }
+}

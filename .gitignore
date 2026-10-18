@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+vendor/
+downloads/
+environments/
+logs/
+dist/
+artifacts/
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+*.pdb
+.env
+secrets.properties

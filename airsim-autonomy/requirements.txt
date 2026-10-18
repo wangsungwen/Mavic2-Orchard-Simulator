@@ -1,0 +1,7 @@
+# Isolated CPython 3.10 environment; old AirSim RPC dependency chain.
+numpy==1.23.5
+msgpack-python==0.5.6
+tornado==4.5.3
+msgpack-rpc-python==0.4.1
+opencv-contrib-python==4.8.1.78
+airsim==1.8.1
