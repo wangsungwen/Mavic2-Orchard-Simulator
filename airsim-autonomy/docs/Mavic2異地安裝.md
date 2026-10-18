@@ -110,3 +110,8 @@ D:\UEProjects\Blocks\Config\settings-mavic2.json
 5. 目標電腦安裝打包輸出隨附的 UE prerequisites，確認顯示卡驅動，再重新驗收。
 
 本次 ZIP 是模型備份，尚未替異地電腦產生或測試新的封裝版 exe。
+
+
+## 2026-10-18 異地部署補充
+
+實際異地啟動曾遇到下載成原始碼包而找不到 `Blocks.uproject`，以及缺少 `XAPOFX1_5.dll`、`X3DAudio1_7.dll`、`D3DCOMPILER_43.dll`、`XINPUT1_3.dll`。若伴隨 90 秒逾時，先處理 DLL 缺件。請依 [異地部署疑難排解](https://github.com/wangsungwen/Mavic2-Orchard-Simulator/blob/main/airsim-autonomy/docs/異地部署疑難排解.md) 完成套件選擇、UE prerequisites 與 DirectX 安裝；DirectX 解壓後必須執行 `DXSETUP.exe`。此補充尚未取得目標電腦修復成功的回報。原 v1 ZIP 與校驗碼保持不變，最新文件由 GitHub 與 Release 補充附件提供。

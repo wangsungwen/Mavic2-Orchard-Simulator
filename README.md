@@ -13,6 +13,10 @@ Windows UE4 4.27 / AirSim 模擬環境，支援「滑鼠選點 → 顯示高度 
 
 [完整操作手冊](airsim-autonomy/docs/UE4選點飛行操作.md) · [果園原型說明](airsim-autonomy/docs/山坡柑橘果園原型.md)
 
+## 異地啟動出錯
+
+若找不到 `Blocks.uproject`，請改下載 Releases 的完整執行包。若缺少 `XAPOFX1_5.dll`、`X3DAudio1_7.dll`、`D3DCOMPILER_43.dll` 或 `XINPUT1_3.dll`，請安裝舊版 DirectX 執行元件。完整步驟見 [異地部署疑難排解](airsim-autonomy/docs/異地部署疑難排解.md)，包含安裝後驗收與 90 秒逾時處理。
+
 ## 原始碼配置
 
 `airsim-autonomy/` 包含 Python 控制器、測試、建置腳本與手冊。`pc-control/mission_intelligence.py` 為 CSV 航線功能使用的相依模組；不包含完整的實機控制 APP。
