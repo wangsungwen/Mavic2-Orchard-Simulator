@@ -4,7 +4,7 @@ Windows UE4 4.27 / AirSim 模擬環境，支援「滑鼠選點 → 顯示高度 
 
 ## 下載與操作
 
-在本儲存庫的 Releases 下載 `Mavic2Simulator-Orchard-v1-20261018.zip` 及 SHA256 檢查檔，完整解壓縮後執行 `Start-Orchard.cmd`。可攜包不需安裝 UE4 編輯器或 Python；若缺少系統執行元件，請參閱手冊。
+在 [Releases 發佈頁](https://github.com/wangsungwen/Mavic2-Orchard-Simulator/releases/tag/v1.0.0-orchard) 下載 `Mavic2Simulator-Orchard-v1-20261018.zip` 及 SHA256 檢查檔，完整解壓縮後執行 `Start-Orchard.cmd`。可攜包不需安裝 UE4 編輯器或 Python；若缺少系統執行元件，請參閱手冊。
 
 - 左鍵選點，方向鍵上／下調整高度，Enter 確認，X 中止並懸停。
 - 首次測試：起飛平台附近 N=2、E=2、高度 3 m。
