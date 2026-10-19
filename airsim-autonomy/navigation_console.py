@@ -19,7 +19,7 @@ def launch_script(path, *args):
 def main():
     app = tk.Tk()
     app.title("Mavic 2 Enterprise Dual — 導航功能入口")
-    app.geometry("720x540")
+    app.geometry("760x700")
     frame = ttk.Frame(app, padding=22)
     frame.pack(fill="both", expand=True)
     ttk.Label(frame, text="選擇使用場地", font=("Microsoft JhengHei", 16)).pack(anchor="w")
@@ -52,6 +52,17 @@ def main():
     demo = ttk.Button(frame, text="開啟雙搖桿離線示範（不連真機）",
         command=lambda: run(ROOT.parent / "joystick-dual/scripts/start-pc.ps1", "-Demo"))
     demo.pack(fill="x", pady=6)
+    def start_dji_status():
+        try:
+            subprocess.Popen([str(ROOT / '.venv/Scripts/python.exe'), str(ROOT / 'dji_console.py')],
+                             cwd=str(ROOT), creationflags=subprocess.CREATE_NO_WINDOW)
+        except Exception as exc:
+            messagebox.showerror("無法開啟", str(exc))
+    ttk.Button(frame, text="DJI 真機連線檢查（只讀，不起飛）",
+               command=start_dji_status).pack(fill="x", pady=6)
+    live = ttk.Button(frame, text="開啟既有 DJI 人工控制台（需 APP 另行授權）",
+        command=lambda: run(ROOT.parent / "joystick-dual/scripts/start-pc.ps1"))
+    live.pack(fill="x", pady=6)
     target = ttk.Button(frame, text="真機：執行 UE4 航點（尚未提供）", state="disabled")
     target.pack(fill="x", pady=6)
     ttk.Label(frame, text="此視窗只選擇工具，不會切換飛控模式、連線、解鎖或起飛。",
@@ -62,7 +73,7 @@ def main():
         text.set(
             "室內：目前沒有場地定位設備，真機自動到點不可用。\n"
             "選點飛行：UE4 點地面 → 上下鍵調高度 → Enter 確認 → X 中止。\n"
-            "只控制 AirSim。雙搖桿離線示範仍是獨立工具，不控制 UE4。"
+            "UE4 選點只控制 AirSim；DJI 真機先以只讀連線檢查確認遙測。"
             if indoor else
             "戶外：保留獨立功能選項，尚未接入本介面。\n"
             "後續以 GPS／起飛點與既有 DJI 航點 APP 串接。\n"
@@ -70,6 +81,7 @@ def main():
         simulation.configure(state="normal" if indoor else "disabled")
         demo.configure(state="normal" if indoor else "disabled")
         points.configure(state="normal" if indoor else "disabled")
+        live.configure(state="normal" if indoor else "disabled")
 
     refresh()
     app.mainloop()

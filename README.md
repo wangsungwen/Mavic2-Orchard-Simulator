@@ -34,3 +34,8 @@ Windows UE4 4.27 / AirSim 模擬環境，支援「滑鼠選點 → 顯示高度 
 ## 第三方來源
 
 AirSim 授權見 [Licenses](Licenses/AirSim-LICENSE.txt)。UE4 與其他相依套件適用各自授權。Mavic 2 模型由使用者提供，來源為 [GrabCAD 模型頁](https://grabcad.com/library/dji-mavic-2-pro-drone-rail-2020-1)；本儲存庫不另行授予第三方模型的使用權。模型外觀不代表 Enterprise Dual 的完整物理或感測器模型。
+
+
+## DJI 真機連線第一階段（0.1）
+
+[連線工具下載](https://github.com/wangsungwen/Mavic2-Orchard-Simulator/releases/tag/v0.1.0-dji-connection) · [操作手冊](airsim-autonomy/docs/DJI真機串接第一階段.md)。使用既有 Mavic Dual Joystick APP 讀取狀態，未開放 UE4 真機到點，不包含 APK／App Key／ADB。設備尚未連接，本版只有軟體及介面啟動檢查。
