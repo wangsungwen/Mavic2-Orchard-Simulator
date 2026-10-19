@@ -1,0 +1,8 @@
+{
+  "snapshot": "2026-10-19",
+  "tag": "baseline-2026-10-19",
+  "components": {
+    "orchard": "1.1",
+    "dji_connection": "0.1"
+  }
+}

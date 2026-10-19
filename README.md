@@ -39,3 +39,8 @@ AirSim 授權見 [Licenses](Licenses/AirSim-LICENSE.txt)。UE4 與其他相依�
 ## DJI 真機連線第一階段（0.1）
 
 [連線工具下載](https://github.com/wangsungwen/Mavic2-Orchard-Simulator/releases/tag/v0.1.0-dji-connection) · [操作手冊](airsim-autonomy/docs/DJI真機串接第一階段.md)。使用既有 Mavic Dual Joystick APP 讀取狀態，未開放 UE4 真機到點，不包含 APK／App Key／ADB。設備尚未連接，本版只有軟體及介面啟動檢查。
+
+
+## 分項版本管理
+
+[四專案對照與依賴](docs/PROJECTS.md) · [元件版本清單](VERSION_MANIFEST.json)。2026-10-19 分項基準使用 `baseline-2026-10-19` 標籤，保留本儲存庫既有提交與發行歷史。
