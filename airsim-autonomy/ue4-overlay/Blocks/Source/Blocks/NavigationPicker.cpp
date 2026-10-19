@@ -63,6 +63,42 @@ void ANavigationPicker::Tick(float DeltaSeconds)
     }
     PC->SetViewTarget(MapCamera);
     PC->bShowMouseCursor = true;
+    // Camera navigation affects only the view, never aircraft commands.
+    auto Camera = MapCamera->GetCameraComponent();
+    float Width = Camera->OrthoWidth;
+    if (PC->WasInputKeyJustPressed(EKeys::MouseScrollUp)) Width /= 1.2f;
+    if (PC->WasInputKeyJustPressed(EKeys::MouseScrollDown)) Width *= 1.2f;
+    FVector Location = MapCamera->GetActorLocation();
+    int32 ViewX = 0, ViewY = 0;
+    PC->GetViewportSize(ViewX, ViewY);
+    const float Aspect = ViewY > 0 ? float(ViewX) / ViewY : 16.f / 9.f;
+    Camera->bConstrainAspectRatio = false;
+    if (PC->WasInputKeyJustPressed(EKeys::Home)) {
+        Location = Sim->getGlobalNedTransform().fromGlobalNed(NedTransform::Vector3r(0,0,0)) + FVector(0,0,5000);
+        Width = 3000.f;
+    }
+    if (PC->WasInputKeyJustPressed(EKeys::F)) {
+        // Orchard terrain spans world XY [-5000,5000] cm.
+        Location = FVector(0,0,15000) - FVector(GetWorld()->OriginLocation);
+        Width = 11000.f * FMath::Max(1.f, Aspect);
+    }
+    Width = FMath::Clamp(Width, 1000.f, 30000.f);
+    FVector Right = MapCamera->GetActorRightVector();
+    FVector Up = MapCamera->GetActorUpVector();
+    const float Step = Width * .6f * FMath::Min(DeltaSeconds, .1f);
+    Location += Right * Step * (float(PC->IsInputKeyDown(EKeys::D)) - float(PC->IsInputKeyDown(EKeys::A)));
+    Location += Up * Step * (float(PC->IsInputKeyDown(EKeys::W)) - float(PC->IsInputKeyDown(EKeys::S)));
+    if (PC->IsInputKeyDown(EKeys::MiddleMouseButton)) {
+        float DX=0, DY=0;
+        PC->GetInputMouseDelta(DX,DY);
+        const float UnitsPerPixel = Width / FMath::Max(1, ViewX);
+        Location += (-Right * DX + Up * DY) * UnitsPerPixel;
+    }
+    const FVector WorldOrigin(GetWorld()->OriginLocation);
+    Location.X = FMath::Clamp(Location.X, -10000.f-WorldOrigin.X, 10000.f-WorldOrigin.X);
+    Location.Y = FMath::Clamp(Location.Y, -10000.f-WorldOrigin.Y, 10000.f-WorldOrigin.Y);
+    MapCamera->SetActorLocation(Location);
+    Camera->SetOrthoWidth(Width);
     if (PC->WasInputKeyJustReleased(EKeys::LeftMouseButton)) {
         FHitResult Hit;
         FVector RayStart, RayDirection;
@@ -88,7 +124,9 @@ void ANavigationPicker::Tick(float DeltaSeconds)
     FFileHelper::LoadFileToString(Status, *(Mailbox + TEXT(".status")));
     if (GEngine) {
         GEngine->AddOnScreenDebugMessage(901, 0.f, FColor::Cyan,
-            TEXT("AIRSIM ONLY | Click surface: select XY | Up/Down: height | Enter: confirm | X: cancel + hover"));
+            TEXT("AIRSIM ONLY | Click: select | Up/Down: height | Enter: fly | X: hover"));
+        GEngine->AddOnScreenDebugMessage(904, 0.f, FColor::Cyan,
+            TEXT("VIEW | Wheel: zoom | WASD / middle drag: pan | F: full map | Home: spawn | Flight radius: 20m"));
         GEngine->AddOnScreenDebugMessage(902, 0.f, FColor::Yellow,
             FString::Printf(TEXT("Height above starting vehicle: %.1f m | %s"), Height, *Status));
     }

@@ -1,4 +1,6 @@
-# Mavic 2 果園模擬器 v1
+# Mavic 2 果園模擬器
+
+新增 [v1.1 視角操作更新](https://github.com/wangsungwen/Mavic2-Orchard-Simulator/releases/tag/v1.1.0-camera)：滾輪縮放、WASD／中鍵平移、F 全果園、Home 起飛區。詳見 [操作說明](airsim-autonomy/docs/果園視角操作更新.md)。編譯及模擬飛行回歸通過；原生相機按鍵測試因 Windows 安全提示阻擋，尚未完成。
 
 Windows UE4 4.27 / AirSim 模擬環境，支援「滑鼠選點 → 顯示高度 → Enter 確認 → 模擬機飛往目標」。本版本只控制 AirSim 模擬機，尚未串接 DJI 真機。
 
